@@ -103,6 +103,20 @@
             animation: fadeIn 0.8s ease-out;
         }
 
+        /* Mobile Brand (Logo for Mobile) */
+        .mobile-brand {
+            display: none; /* Hidden on desktop */
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .mobile-brand i { color: var(--accent); }
+
         /* Header */
         header {
             display: flex;
@@ -299,14 +313,24 @@
         @media (max-width: 992px) {
             .sidebar { display: none; }
             .main-content { margin-left: 0; padding: 1.5rem; }
+            
+            /* Show Mobile Brand */
+            .mobile-brand { display: flex; }
+
             .financial-section { grid-template-columns: 1fr; }
             .terms-grid { grid-template-columns: 1fr; }
+            
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar de Navegação -->
+    <!-- Sidebar de Navegação (Desktop) -->
     <nav class="sidebar">
         <div>
             <div class="brand">
@@ -330,6 +354,12 @@
     <!-- Conteúdo Principal -->
     <main class="main-content">
         
+        <!-- Logo Mobile (Aparece apenas em telas menores) -->
+        <div class="mobile-brand">
+            <i class="fa-solid fa-chart-line"></i>
+            BRUM INTELLIGENCE
+        </div>
+
         <!-- Header Superior -->
         <header>
             <div class="page-title">
