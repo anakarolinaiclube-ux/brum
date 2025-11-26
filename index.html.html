@@ -289,13 +289,6 @@
         }
         .btn-outline:hover { background: rgba(10,35,66,0.05); }
 
-        .btn-primary {
-            background: var(--accent);
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(204, 76, 0, 0.3);
-        }
-        .btn-primary:hover { background: #b34200; transform: translateY(-2px); }
-
         /* Animações */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -318,7 +311,7 @@
         <div>
             <div class="brand">
                 <i class="fa-solid fa-chart-line"></i>
-                BRUM INT.
+                BRUM INTELLIGENCE
             </div>
             <ul class="nav-links">
                 <li><a href="#" class="active"><i class="fa-solid fa-house"></i> Visão Geral</a></li>
@@ -361,7 +354,7 @@
             <div class="service-card">
                 <div class="card-header">
                     <div class="icon-box"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-                    <span class="price-tag">R$ 1.000,00<span style="font-size:0.8rem; color:var(--text-gray); font-weight:400">/mês</span></span>
+                    <span class="price-tag">R$ 1.500,00<span style="font-size:0.8rem; color:var(--text-gray); font-weight:400">/mês</span></span>
                 </div>
                 <h3 class="service-title">A. Inteligência de Mercado e Análise</h3>
                 <ul class="feature-list">
@@ -377,7 +370,7 @@
             <div class="service-card">
                 <div class="card-header">
                     <div class="icon-box"><i class="fa-solid fa-network-wired"></i></div>
-                    <span class="price-tag">R$ 1.000,00<span style="font-size:0.8rem; color:var(--text-gray); font-weight:400">/mês</span></span>
+                    <span class="price-tag">R$ 1.500,00<span style="font-size:0.8rem; color:var(--text-gray); font-weight:400">/mês</span></span>
                 </div>
                 <h3 class="service-title">B. Operacional & Gestão de Canais</h3>
                 <ul class="feature-list">
@@ -397,10 +390,9 @@
             <!-- Card de Investimento Total -->
             <div class="investment-card">
                 <h3>Investimento Mensal Total</h3>
-                <div class="total-price">R$ 2.000,00</div>
+                <div class="total-price">R$ 3.000,00</div>
                 <p class="sub-text">Serviços A + B integrados</p>
                 <div style="margin-top: 20px; width: 100px; height: 100px;">
-                     <!-- Mini gráfico simulado via CSS (ou Chart.js abaixo) -->
                      <canvas id="budgetChart"></canvas>
                 </div>
             </div>
@@ -426,9 +418,6 @@
         <!-- Barra de Ação -->
         <div class="action-bar">
             <button class="btn btn-outline" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir PDF</button>
-            <button class="btn btn-primary" onclick="alert('Obrigado! A equipe da Brum Intelligence entrará em contato para formalizar o contrato.')">
-                <i class="fa-solid fa-signature"></i> Aprovar Proposta
-            </button>
         </div>
 
     </main>
@@ -441,7 +430,7 @@
             data: {
                 labels: ['Análise', 'Operacional'],
                 datasets: [{
-                    data: [1000, 1000],
+                    data: [1500, 1500],
                     backgroundColor: [
                         'rgba(255, 255, 255, 0.4)',
                         'rgba(255, 255, 255, 0.9)'
