@@ -37,7 +37,7 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
+        /* --- SIDEBAR --- */
         .sidebar {
             width: 260px;
             background-color: var(--primary);
@@ -62,10 +62,7 @@
 
         .brand i { color: var(--accent); }
 
-        .nav-links li {
-            list-style: none;
-            margin-bottom: 1rem;
-        }
+        .nav-links li { list-style: none; margin-bottom: 1rem; }
 
         .nav-links a {
             text-decoration: none;
@@ -95,17 +92,18 @@
         .client-info h4 { font-size: 0.9rem; margin-bottom: 5px; color: var(--accent); }
         .client-info p { font-size: 0.8rem; opacity: 0.8; }
 
-        /* Main Content */
+        /* --- MAIN CONTENT --- */
         .main-content {
             flex: 1;
             margin-left: 260px;
             padding: 2rem 3rem;
             animation: fadeIn 0.8s ease-out;
+            position: relative;
         }
 
-        /* Mobile Brand (Logo for Mobile) */
+        /* Mobile Brand */
         .mobile-brand {
-            display: none; /* Hidden on desktop */
+            display: none;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
@@ -139,16 +137,9 @@
             align-items: center;
             gap: 8px;
         }
+        .status-badge::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
 
-        .status-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
-
-        /* Objective Card */
+        /* Objective */
         .objective-card {
             background: var(--white);
             border-radius: 16px;
@@ -157,11 +148,10 @@
             margin-bottom: 2rem;
             border-left: 5px solid var(--accent);
         }
-
         .objective-card h2 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--primary); }
         .objective-card p { line-height: 1.6; color: var(--text-gray); }
 
-        /* Services Grid */
+        /* Services Grid & Interactive List */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -175,14 +165,8 @@
             padding: 2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
 
         .card-header {
             display: flex;
@@ -192,25 +176,16 @@
         }
 
         .icon-box {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             background: rgba(10, 35, 66, 0.1);
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); font-size: 1.2rem;
         }
-
-        .price-tag {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
+        .price-tag { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
         .service-title { font-size: 1.1rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem; }
         
+        /* Interactive List Items */
         .feature-list { list-style: none; }
         .feature-list li {
             margin-bottom: 0.8rem;
@@ -219,6 +194,17 @@
             display: flex;
             align-items: flex-start;
             gap: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        
+        .feature-list li:hover {
+            background: #f0f4f8;
+            border-color: #d1d9e6;
+            color: var(--primary);
         }
 
         .feature-list li i {
@@ -227,110 +213,108 @@
             font-size: 0.8rem;
         }
 
-        /* Financial Section */
+        .click-hint {
+            font-size: 0.75rem; 
+            color: var(--accent); 
+            margin-top: 10px; 
+            font-style: italic; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px;
+        }
+
+        /* Financial */
         .financial-section {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
-
         .investment-card {
             background: var(--primary);
             color: var(--white);
             border-radius: 16px;
             padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            position: relative; overflow: hidden;
         }
-        
         .investment-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
         }
-
         .investment-card h3 { font-size: 1rem; opacity: 0.8; margin-bottom: 0.5rem; font-weight: 400; }
         .investment-card .total-price { font-size: 2.5rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
-        .investment-card .sub-text { font-size: 0.8rem; opacity: 0.6; }
 
         .terms-grid {
             background: var(--white);
             border-radius: 16px;
             padding: 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
         }
-
         .term-item h4 { font-size: 0.9rem; color: var(--primary); margin-bottom: 0.5rem; display: flex; gap: 8px; align-items: center; }
         .term-item p { font-size: 0.85rem; color: var(--text-gray); line-height: 1.5; }
 
         /* Action Bar */
         .action-bar {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
+            display: flex; justify-content: flex-end; align-items: center; gap: 1.5rem;
+            margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);
         }
-
-        .btn {
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            border: none;
-            font-size: 0.95rem;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
+        .btn { padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; border: none; font-size: 0.95rem; }
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
         .btn-outline:hover { background: rgba(10,35,66,0.05); }
 
-        /* Animações */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* --- MODAL / DETAIL CARD --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 35, 66, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
         }
+
+        .modal-card {
+            background: var(--white);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+            transform: scale(0.9);
+            animation: popIn 0.3s forwards;
+            border-top: 6px solid var(--accent);
+        }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+        .modal-title { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+        .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--text-gray); cursor: pointer; transition: 0.2s; }
+        .close-btn:hover { color: var(--accent); }
+
+        .modal-body p { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 1.5rem; }
+        .chart-container { width: 100%; height: 250px; background: #f9f9f9; border-radius: 12px; padding: 15px; }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         /* Responsividade */
         @media (max-width: 992px) {
             .sidebar { display: none; }
             .main-content { margin-left: 0; padding: 1.5rem; }
-            
-            /* Show Mobile Brand */
             .mobile-brand { display: flex; }
-
             .financial-section { grid-template-columns: 1fr; }
             .terms-grid { grid-template-columns: 1fr; }
-            
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
+            header { flex-direction: column; align-items: flex-start; gap: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar de Navegação (Desktop) -->
+    <!-- Sidebar -->
     <nav class="sidebar">
         <div>
             <div class="brand">
@@ -351,16 +335,14 @@
         </div>
     </nav>
 
-    <!-- Conteúdo Principal -->
+    <!-- Content -->
     <main class="main-content">
         
-        <!-- Logo Mobile (Aparece apenas em telas menores) -->
         <div class="mobile-brand">
             <i class="fa-solid fa-chart-line"></i>
             BRUM INTELLIGENCE
         </div>
 
-        <!-- Header Superior -->
         <header>
             <div class="page-title">
                 <h1>Proposta de Serviços</h1>
@@ -371,16 +353,15 @@
             </div>
         </header>
 
-        <!-- Objetivo -->
         <section class="objective-card">
             <h2><i class="fa-solid fa-bullseye" style="color: var(--accent); margin-right: 10px;"></i> Objetivo do Serviço</h2>
             <p>Implementar estratégias de <strong>Revenue Management</strong> e <strong>Distribuição Hoteleira</strong> com foco em maximizar receita, otimizar canais de venda, melhorar desempenho tarifário e fortalecer a competitividade do hotel no mercado.</p>
         </section>
 
-        <!-- Grid de Serviços -->
+        <!-- Services -->
         <section id="services" class="services-grid">
             
-            <!-- Card Serviço A -->
+            <!-- Service A -->
             <div class="service-card">
                 <div class="card-header">
                     <div class="icon-box"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
@@ -388,15 +369,26 @@
                 </div>
                 <h3 class="service-title">A. Inteligência de Mercado e Análise</h3>
                 <ul class="feature-list">
-                    <li><i class="fa-solid fa-check"></i> Análise diária de tarifas, ocupação e demanda.</li>
-                    <li><i class="fa-solid fa-check"></i> Benchmarking competitivo (concorrência).</li>
-                    <li><i class="fa-solid fa-check"></i> Estudo de elasticidade e posicionamento.</li>
-                    <li><i class="fa-solid fa-check"></i> Relatórios mensais e KPIs de desempenho.</li>
-                    <li><i class="fa-solid fa-check"></i> Script estratégico e planilhas de pickup/pace.</li>
+                    <li onclick="openDetail('analise')">
+                        <i class="fa-solid fa-check"></i> Análise diária de tarifas, ocupação e demanda.
+                    </li>
+                    <li onclick="openDetail('benchmarking')">
+                        <i class="fa-solid fa-check"></i> Benchmarking competitivo (concorrência).
+                    </li>
+                    <li onclick="openDetail('elasticidade')">
+                        <i class="fa-solid fa-check"></i> Estudo de elasticidade e posicionamento.
+                    </li>
+                    <li onclick="openDetail('relatorios')">
+                        <i class="fa-solid fa-check"></i> Relatórios mensais e KPIs de desempenho.
+                    </li>
+                    <li onclick="openDetail('script')">
+                        <i class="fa-solid fa-check"></i> Script estratégico e planilhas de pickup/pace.
+                    </li>
                 </ul>
+                <div class="click-hint"><i class="fa-solid fa-computer-mouse"></i> Clique nos itens para visualizar exemplos</div>
             </div>
 
-            <!-- Card Serviço B -->
+            <!-- Service B -->
             <div class="service-card">
                 <div class="card-header">
                     <div class="icon-box"><i class="fa-solid fa-network-wired"></i></div>
@@ -404,20 +396,29 @@
                 </div>
                 <h3 class="service-title">B. Operacional & Gestão de Canais</h3>
                 <ul class="feature-list">
-                    <li><i class="fa-solid fa-check"></i> Gestão completa de tarifas e inventário (OTAs, GDS).</li>
-                    <li><i class="fa-solid fa-check"></i> Configurações de Channel Manager / PMS.</li>
-                    <li><i class="fa-solid fa-check"></i> Otimização de conteúdo e paridade tarifária.</li>
-                    <li><i class="fa-solid fa-check"></i> Apoio comercial em campanhas e promoções.</li>
-                    <li><i class="fa-solid fa-check"></i> Gestão de overbooking e controle de allotments.</li>
+                    <li onclick="openDetail('gestao')">
+                        <i class="fa-solid fa-check"></i> Gestão completa de tarifas e inventário.
+                    </li>
+                    <li onclick="openDetail('config')">
+                        <i class="fa-solid fa-check"></i> Configurações de Channel Manager / PMS.
+                    </li>
+                    <li onclick="openDetail('paridade')">
+                        <i class="fa-solid fa-check"></i> Otimização de conteúdo e paridade tarifária.
+                    </li>
+                    <li onclick="openDetail('apoio')">
+                        <i class="fa-solid fa-check"></i> Apoio comercial em campanhas e promoções.
+                    </li>
+                    <li onclick="openDetail('overbooking')">
+                        <i class="fa-solid fa-check"></i> Gestão de overbooking e controle de allotments.
+                    </li>
                 </ul>
+                <div class="click-hint"><i class="fa-solid fa-computer-mouse"></i> Clique nos itens para visualizar exemplos</div>
             </div>
 
         </section>
 
-        <!-- Financeiro e Termos -->
+        <!-- Financial -->
         <section id="financial" class="financial-section">
-            
-            <!-- Card de Investimento Total -->
             <div class="investment-card">
                 <h3>Investimento Mensal Total</h3>
                 <div class="total-price">R$ 3.000,00</div>
@@ -427,7 +428,6 @@
                 </div>
             </div>
 
-            <!-- Grid de Termos -->
             <div id="terms" class="terms-grid">
                 <div class="term-item">
                     <h4><i class="fa-regular fa-calendar-check"></i> Pagamento</h4>
@@ -439,43 +439,197 @@
                 </div>
                 <div class="term-item" style="grid-column: 1 / -1;">
                     <h4><i class="fa-solid fa-user-shield"></i> Confidencialidade</h4>
-                    <p>Sigilo absoluto de todas as informações operacionais, estratégicas e comerciais do hotel. Dados não compartilhados sem autorização prévia.</p>
+                    <p>Sigilo absoluto de todas as informações operacionais, estratégicas e comerciais do hotel.</p>
                 </div>
             </div>
-
         </section>
 
-        <!-- Barra de Ação -->
         <div class="action-bar">
             <button class="btn btn-outline" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir PDF</button>
         </div>
-
     </main>
 
+    <!-- MODAL DE DETALHES -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="mTitle">Título do Item</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="mDesc">Descrição do item aqui.</p>
+                <div class="chart-container">
+                    <canvas id="detailChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script>
-        // Configuração simples do gráfico Donut para visualização do budget
-        const ctx = document.getElementById('budgetChart').getContext('2d');
-        const budgetChart = new Chart(ctx, {
+        // --- 1. Gráfico de Budget Geral (Donut) ---
+        const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+        new Chart(ctxBudget, {
             type: 'doughnut',
             data: {
                 labels: ['Análise', 'Operacional'],
                 datasets: [{
                     data: [1500, 1500],
-                    backgroundColor: [
-                        'rgba(255, 255, 255, 0.4)',
-                        'rgba(255, 255, 255, 0.9)'
-                    ],
-                    borderWidth: 0,
-                    hoverOffset: 4
+                    backgroundColor: ['rgba(255, 255, 255, 0.4)', 'rgba(255, 255, 255, 0.9)'],
+                    borderWidth: 0
                 }]
             },
-            options: {
-                plugins: { legend: { display: false }, tooltip: { enabled: false } },
-                cutout: '70%',
-                responsive: true,
-                maintainAspectRatio: true
-            }
+            options: { plugins: { legend: { display: false } }, cutout: '70%', responsive: true }
         });
+
+        // --- 2. Dados Fictícios para o Modal Interativo ---
+        const detailsData = {
+            'analise': {
+                title: 'Análise Diária de Performance',
+                desc: 'Monitoramento diário visualizando a relação entre Ocupação (%) e Diária Média (ADR) para identificar tendências.',
+                type: 'line',
+                data: {
+                    labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    datasets: [
+                        { label: 'Ocupação %', data: [45, 55, 65, 80, 95, 90, 50], borderColor: '#CC4C00', yAxisID: 'y' },
+                        { label: 'ADR (R$)', data: [280, 290, 310, 350, 420, 400, 280], borderColor: '#0A2342', yAxisID: 'y1' }
+                    ]
+                }
+            },
+            'benchmarking': {
+                title: 'Benchmarking Competitivo',
+                desc: 'Comparativo do seu hotel (Brum) versus Cesta Competitiva (CompSet) em RGI (Revenue Generation Index).',
+                type: 'bar',
+                data: {
+                    labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+                    datasets: [{ label: 'RGI Index', data: [0.95, 1.02, 1.10, 1.15], backgroundColor: '#0A2342' }]
+                }
+            },
+            'elasticidade': {
+                title: 'Elasticidade de Preço',
+                desc: 'Análise de como a variação de tarifa impacta o volume de vendas para encontrar o ponto ótimo de receita.',
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Conversão x Tarifa',
+                        data: [{x: 250, y: 30}, {x: 300, y: 25}, {x: 350, y: 15}, {x: 200, y: 45}],
+                        backgroundColor: '#CC4C00'
+                    }]
+                }
+            },
+            'relatorios': {
+                title: 'Relatórios Mensais & KPIs',
+                desc: 'Exemplo da composição de receita por segmento analisada no fechamento mensal.',
+                type: 'pie',
+                data: {
+                    labels: ['Corporativo', 'Lazer', 'Grupos', 'Direto'],
+                    datasets: [{ data: [40, 30, 10, 20], backgroundColor: ['#0A2342', '#CC4C00', '#666666', '#28a745'] }]
+                }
+            },
+            'script': {
+                title: 'Pace de Vendas',
+                desc: 'Comparativo de reservas on-the-books (OTB) este ano vs ano passado (Same Time Last Year).',
+                type: 'bar',
+                data: {
+                    labels: ['Nov', 'Dez', 'Jan', 'Fev'],
+                    datasets: [
+                        { label: '2024', data: [150, 200, 180, 160], backgroundColor: '#CC4C00' },
+                        { label: '2025 (Pace)', data: [170, 220, 190, 175], backgroundColor: '#0A2342' }
+                    ]
+                }
+            },
+            'gestao': {
+                title: 'Mix de Distribuição',
+                desc: 'Gestão visual da participação de cada canal na receita total.',
+                type: 'doughnut',
+                data: {
+                    labels: ['Booking', 'Expedia', 'Site Próprio', 'GDS'],
+                    datasets: [{ data: [45, 20, 25, 10], backgroundColor: ['#003580', '#FFD700', '#CC4C00', '#0A2342'] }]
+                }
+            },
+            'config': {
+                title: 'Conectividade de Sistemas',
+                desc: 'Monitoramento de tempo de resposta e falhas de integração entre PMS e Canais.',
+                type: 'bar',
+                data: {
+                    labels: ['Sincronização', 'Erros', 'Mapping'],
+                    datasets: [{ label: 'Status', data: [99.9, 0.1, 100], backgroundColor: ['#28a745', '#dc3545', '#0A2342'] }]
+                }
+            },
+            'paridade': {
+                title: 'Monitoramento de Paridade',
+                desc: 'Frequência de tarifas desparitadas encontradas nos canais de venda.',
+                type: 'line',
+                data: {
+                    labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
+                    datasets: [{ label: 'Desparidades', data: [12, 8, 3, 1], borderColor: '#CC4C00', tension: 0.4 }]
+                }
+            },
+            'apoio': {
+                title: 'Retorno de Campanhas',
+                desc: 'ROI (Retorno sobre Investimento) das últimas campanhas promocionais ativadas.',
+                type: 'bar',
+                data: {
+                    labels: ['Black Friday', 'Natal Ant.', 'Flash Sale'],
+                    datasets: [{ label: 'ROI (x)', data: [15, 10, 8], backgroundColor: '#0A2342' }]
+                }
+            },
+            'overbooking': {
+                title: 'Controle de Inventário',
+                desc: 'Visualização da ocupação real vs capacidade total para gestão agressiva de overbooking.',
+                type: 'line',
+                data: {
+                    labels: ['18h', '19h', '20h', '21h', '22h'],
+                    datasets: [
+                        { label: 'Ocupação', data: [95, 98, 102, 100, 99], borderColor: '#CC4C00' },
+                        { label: 'Limite Físico', data: [100, 100, 100, 100, 100], borderColor: '#666', borderDash: [5,5] }
+                    ]
+                }
+            }
+        };
+
+        // --- 3. Lógica do Modal ---
+        let currentChart = null;
+        const modal = document.getElementById('detailModal');
+
+        function openDetail(key) {
+            const data = detailsData[key];
+            if(!data) return;
+
+            document.getElementById('mTitle').innerText = data.title;
+            document.getElementById('mDesc').innerText = data.desc;
+
+            // Destruir gráfico anterior se existir
+            if(currentChart) currentChart.destroy();
+
+            // Criar novo gráfico
+            const ctx = document.getElementById('detailChart').getContext('2d');
+            currentChart = new Chart(ctx, {
+                type: data.type,
+                data: data.data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: data.type === 'line' && data.data.datasets.length > 1 ? {
+                        y: { type: 'linear', display: true, position: 'left' },
+                        y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false } }
+                    } : {}
+                }
+            });
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Fechar ao clicar fora do card
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
     </script>
 </body>
 </html>
