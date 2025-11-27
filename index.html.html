@@ -231,15 +231,13 @@
             margin-bottom: 2rem;
         }
 
-        /* Container do Flip */
         .flip-container {
             background-color: transparent;
             width: 100%;
-            height: 350px; /* Altura fixa necessária para o efeito 3D */
+            height: 350px; 
             perspective: 1000px;
         }
 
-        /* O container interno que faz o giro */
         .flip-inner {
             position: relative;
             width: 100%;
@@ -249,17 +247,16 @@
             transform-style: preserve-3d;
         }
 
-        /* Classe ativada via JS */
         .flip-container.flipped .flip-inner {
             transform: rotateY(180deg);
         }
 
-        /* Estilo comum para Frente e Verso (herda estilo do card antigo) */
-        .flip-front, .flip-back {
+        /* Estilo comum para Frente */
+        .flip-front {
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden; /* Safari */
+            -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             background: var(--primary);
             color: var(--white);
@@ -273,65 +270,111 @@
             overflow: hidden;
         }
 
-        /* Gradiente de fundo */
-        .flip-front::after, .flip-back::after {
+        .flip-front::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+            pointer-events: none; z-index: 1;
+        }
+        .flip-front > * { z-index: 2; }
+        .flip-front h3 { font-size: 1rem; opacity: 0.8; margin-bottom: 0.5rem; font-weight: 400; }
+        .flip-front .total-price { font-size: 2.5rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
+        .flip-front .sub-text { font-size: 0.8rem; opacity: 0.6; }
+
+        /* Estilo PREMIUM do Verso (Modificado) */
+        .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transform: rotateY(180deg);
+            
+            /* Fundo Premium: Gradiente Profundo */
+            background: linear-gradient(160deg, #0A2342 0%, #030F1F 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Detalhe de brilho dourado no topo */
+        .flip-back::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #CC4C00, transparent);
+            opacity: 0.8;
+        }
+
+        /* Efeito de brilho de fundo */
+        .flip-back::after {
+            content: '';
+            position: absolute;
+            width: 200%; height: 200%;
+            top: -50%; left: -50%;
+            background: radial-gradient(circle, rgba(204, 76, 0, 0.08) 0%, transparent 60%);
             pointer-events: none;
             z-index: 1;
         }
 
-        /* Conteúdo acima do gradiente */
-        .flip-front > *, .flip-back > * { z-index: 2; }
+        .flip-back > * { z-index: 2; position: relative; }
 
-        /* Estilo Específico da Frente */
-        .flip-front h3, .flip-back h3 { font-size: 1rem; opacity: 0.8; margin-bottom: 0.5rem; font-weight: 400; }
-        .flip-front .total-price { font-size: 2.5rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
-        .flip-front .sub-text { font-size: 0.8rem; opacity: 0.6; }
-
-        /* Estilo Específico do Verso (rotate) */
-        .flip-back {
-            transform: rotateY(180deg);
-            background: linear-gradient(135deg, #0A2342 0%, #0d2e55 100%);
+        .flip-back h3 { 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: rgba(255,255,255,0.6); 
+            margin-bottom: 1.5rem; 
         }
 
         .flip-back .original-price {
-            font-size: 1.1rem;
-            color: #aaa;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.4);
             text-decoration: line-through;
             margin-bottom: 5px;
+            font-weight: 300;
         }
 
         .flip-back .final-price {
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            color: var(--accent);
-            text-shadow: 0 2px 10px rgba(204, 76, 0, 0.3);
-            margin: 5px 0;
+            color: #FFFFFF;
+            line-height: 1;
+            margin-bottom: 15px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-family: 'Poppins', sans-serif;
         }
 
         .flip-back .discount-badge {
-            background: rgba(40, 167, 69, 0.2);
-            color: #4cd16f;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            border: 1px solid rgba(40, 167, 69, 0.3);
+            background: rgba(204, 76, 0, 0.15);
+            color: #FFB380;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(204, 76, 0, 0.3);
+            backdrop-filter: blur(5px);
+            display: inline-block;
         }
 
         /* Botão de Flip */
         .btn-flip {
-            margin-top: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: auto;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: var(--white);
-            padding: 8px 20px;
+            padding: 10px 24px;
             border-radius: 30px;
             font-size: 0.85rem;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -340,7 +383,8 @@
         .btn-flip:hover {
             background: var(--white);
             color: var(--primary);
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
         }
 
         /* --- TERMOS E BOTÕES FINAIS --- */
@@ -409,7 +453,7 @@
             .financial-section { grid-template-columns: 1fr; }
             .terms-grid { grid-template-columns: 1fr; }
             header { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .flip-container { height: 380px; } /* Ajuste de altura para mobile */
+            .flip-container { height: 380px; }
         }
     </style>
 </head>
@@ -540,16 +584,17 @@
                         </button>
                     </div>
 
-                    <!-- VERSO -->
+                    <!-- VERSO (PREMIUM) -->
                     <div class="flip-back">
                         <h3>Condição Exclusiva</h3>
+                        
                         <div class="original-price">De: R$ 3.000,00</div>
-                        <div class="discount-badge">Desconto aplicado</div>
                         
                         <div class="final-price">R$ 2.200,00</div>
-                        <p class="sub-text" style="color:rgba(255,255,255,0.8)">Valor Final Contratado</p>
+                        
+                        <div class="discount-badge">Valor Final Contratado</div>
 
-                        <button class="btn-flip" onclick="toggleFlip()">
+                        <button class="btn-flip" onclick="toggleFlip()" style="margin-top:auto">
                             <i class="fa-solid fa-rotate-left"></i> Voltar
                         </button>
                     </div>
