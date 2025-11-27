@@ -223,27 +223,127 @@
             gap: 5px;
         }
 
-        /* Financial */
+        /* --- FLIP CARD STYLES (Financial Section) --- */
         .financial-section {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
-        .investment-card {
+
+        /* Container do Flip */
+        .flip-container {
+            background-color: transparent;
+            width: 100%;
+            height: 350px; /* Altura fixa necessária para o efeito 3D */
+            perspective: 1000px;
+        }
+
+        /* O container interno que faz o giro */
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        /* Classe ativada via JS */
+        .flip-container.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Estilo comum para Frente e Verso (herda estilo do card antigo) */
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
             background: var(--primary);
             color: var(--white);
             border-radius: 16px;
             padding: 2rem;
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-            position: relative; overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
-        .investment-card::after {
+
+        /* Gradiente de fundo */
+        .flip-front::after, .flip-back::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 1;
         }
-        .investment-card h3 { font-size: 1rem; opacity: 0.8; margin-bottom: 0.5rem; font-weight: 400; }
-        .investment-card .total-price { font-size: 2.5rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
+
+        /* Conteúdo acima do gradiente */
+        .flip-front > *, .flip-back > * { z-index: 2; }
+
+        /* Estilo Específico da Frente */
+        .flip-front h3, .flip-back h3 { font-size: 1rem; opacity: 0.8; margin-bottom: 0.5rem; font-weight: 400; }
+        .flip-front .total-price { font-size: 2.5rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
+        .flip-front .sub-text { font-size: 0.8rem; opacity: 0.6; }
+
+        /* Estilo Específico do Verso (rotate) */
+        .flip-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #0A2342 0%, #0d2e55 100%);
+        }
+
+        .flip-back .original-price {
+            font-size: 1.1rem;
+            color: #aaa;
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+
+        .flip-back .final-price {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-shadow: 0 2px 10px rgba(204, 76, 0, 0.3);
+            margin: 5px 0;
+        }
+
+        .flip-back .discount-badge {
+            background: rgba(40, 167, 69, 0.2);
+            color: #4cd16f;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+
+        /* Botão de Flip */
+        .btn-flip {
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-flip:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* --- TERMOS E BOTÕES FINAIS --- */
 
         .terms-grid {
             background: var(--white);
@@ -309,6 +409,7 @@
             .financial-section { grid-template-columns: 1fr; }
             .terms-grid { grid-template-columns: 1fr; }
             header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .flip-container { height: 380px; } /* Ajuste de altura para mobile */
         }
     </style>
 </head>
@@ -417,21 +518,50 @@
 
         </section>
 
-        <!-- Financial -->
+        <!-- Financial Section with Flip Card -->
         <section id="financial" class="financial-section">
-            <div class="investment-card">
-                <h3>Investimento Mensal Total</h3>
-                <div class="total-price">R$ 3.000,00</div>
-                <p class="sub-text">Serviços A + B integrados</p>
-                <div style="margin-top: 20px; width: 100px; height: 100px;">
-                     <canvas id="budgetChart"></canvas>
+            
+            <!-- Flip Card Container -->
+            <div class="flip-container" id="flipCard">
+                <div class="flip-inner">
+                    
+                    <!-- FRENTE -->
+                    <div class="flip-front">
+                        <h3>Investimento Mensal Total</h3>
+                        <div class="total-price">R$ 3.000,00</div>
+                        <p class="sub-text">Serviços A + B integrados</p>
+                        
+                        <div style="margin: 20px 0; width: 90px; height: 90px;">
+                             <canvas id="budgetChart"></canvas>
+                        </div>
+
+                        <button class="btn-flip" onclick="toggleFlip()">
+                            Acessar valor exclusivo <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- VERSO -->
+                    <div class="flip-back">
+                        <h3>Condição Exclusiva</h3>
+                        <div class="original-price">De: R$ 3.000,00</div>
+                        <div class="discount-badge">Desconto aplicado</div>
+                        
+                        <div class="final-price">R$ 2.200,00</div>
+                        <p class="sub-text" style="color:rgba(255,255,255,0.8)">Valor Final Contratado</p>
+
+                        <button class="btn-flip" onclick="toggleFlip()">
+                            <i class="fa-solid fa-rotate-left"></i> Voltar
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
+            <!-- Terms Grid -->
             <div id="terms" class="terms-grid">
                 <div class="term-item">
                     <h4><i class="fa-regular fa-calendar-check"></i> Pagamento</h4>
-                    <p>Mensal, mediante nota fiscal com vencimento todo dia 30. Reajuste anual (IPCA ou equivalente).</p>
+                    <p>Mensal, mediante emissão de nota fiscal até dia 25 para pagamento no quinto dia útil. Reajuste anual (IPCA ou equivalente).</p>
                 </div>
                 <div class="term-item">
                     <h4><i class="fa-solid fa-hourglass-half"></i> Vigência</h4>
@@ -467,7 +597,13 @@
 
     <!-- Scripts -->
     <script>
-        // --- 1. Gráfico de Budget Geral (Donut) ---
+        // --- 0. Função do Flip Card ---
+        function toggleFlip() {
+            const card = document.getElementById('flipCard');
+            card.classList.toggle('flipped');
+        }
+
+        // --- 1. Gráfico de Budget Geral (Donut - Frente do Card) ---
         const ctxBudget = document.getElementById('budgetChart').getContext('2d');
         new Chart(ctxBudget, {
             type: 'doughnut',
@@ -482,7 +618,7 @@
             options: { plugins: { legend: { display: false } }, cutout: '70%', responsive: true }
         });
 
-        // --- 2. Dados Fictícios para o Modal Interativo ---
+        // --- 2. Dados Fictícios para o Modal Interativo (Mantido) ---
         const detailsData = {
             'analise': {
                 title: 'Análise Diária de Performance',
@@ -599,10 +735,8 @@
             document.getElementById('mTitle').innerText = data.title;
             document.getElementById('mDesc').innerText = data.desc;
 
-            // Destruir gráfico anterior se existir
             if(currentChart) currentChart.destroy();
 
-            // Criar novo gráfico
             const ctx = document.getElementById('detailChart').getContext('2d');
             currentChart = new Chart(ctx, {
                 type: data.type,
@@ -624,7 +758,6 @@
             modal.style.display = 'none';
         }
 
-        // Fechar ao clicar fora do card
         window.onclick = function(event) {
             if (event.target == modal) {
                 closeModal();
