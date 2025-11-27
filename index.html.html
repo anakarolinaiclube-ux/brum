@@ -256,7 +256,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden;
+            -webkit-backface-visibility: hidden; /* Garante que o verso não apareça */
             backface-visibility: hidden;
             background: var(--primary);
             color: var(--white);
@@ -268,6 +268,7 @@
             align-items: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             overflow: hidden;
+            z-index: 2; /* Garante prioridade quando visível */
         }
 
         .flip-front::after {
@@ -285,7 +286,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden;
+            -webkit-backface-visibility: hidden; /* Garante que a frente não apareça no mobile */
             backface-visibility: hidden;
             border-radius: 16px;
             padding: 2.5rem 2rem;
@@ -296,8 +297,10 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             overflow: hidden;
             transform: rotateY(180deg);
+            z-index: 1;
             
-            /* Fundo Premium: Gradiente Profundo */
+            /* Fundo Premium: Gradiente Profundo Sólido (Evita transparência mobile) */
+            background: #030F1F; 
             background: linear-gradient(160deg, #0A2342 0%, #030F1F 100%);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -323,14 +326,15 @@
             z-index: 1;
         }
 
-        .flip-back > * { z-index: 2; position: relative; }
+        .flip-back > * { z-index: 3; position: relative; }
 
         .flip-back h3 { 
-            font-size: 0.85rem; 
+            font-size: 0.9rem; 
             text-transform: uppercase; 
-            letter-spacing: 2px; 
-            color: rgba(255,255,255,0.6); 
-            margin-bottom: 1.5rem; 
+            letter-spacing: 1.5px; 
+            color: rgba(255,255,255,0.7); 
+            margin-bottom: 1.5rem;
+            font-weight: 600; 
         }
 
         .flip-back .original-price {
@@ -341,14 +345,16 @@
             font-weight: 300;
         }
 
+        /* Ajustado tamanho para caber na linha */
         .flip-back .final-price {
-            font-size: 3.5rem;
+            font-size: 2.5rem; /* Reduzido de 3.5rem */
             font-weight: 700;
             color: #FFFFFF;
             line-height: 1;
             margin-bottom: 15px;
             text-shadow: 0 5px 15px rgba(0,0,0,0.3);
             font-family: 'Poppins', sans-serif;
+            white-space: nowrap; /* Tenta manter na mesma linha */
         }
 
         .flip-back .discount-badge {
@@ -356,8 +362,8 @@
             color: #FFB380;
             padding: 6px 16px;
             border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            font-size: 0.9rem;
+            font-weight: 600;
             margin-bottom: 2rem;
             border: 1px solid rgba(204, 76, 0, 0.3);
             backdrop-filter: blur(5px);
@@ -586,13 +592,13 @@
 
                     <!-- VERSO (PREMIUM) -->
                     <div class="flip-back">
-                        <h3>Condição Exclusiva</h3>
+                        <h3>Desconto Aplicado:</h3>
                         
                         <div class="original-price">De: R$ 3.000,00</div>
                         
                         <div class="final-price">R$ 2.200,00</div>
                         
-                        <div class="discount-badge">Valor Final Contratado</div>
+                        <div class="discount-badge">-26,7%</div>
 
                         <button class="btn-flip" onclick="toggleFlip()" style="margin-top:auto">
                             <i class="fa-solid fa-rotate-left"></i> Voltar
