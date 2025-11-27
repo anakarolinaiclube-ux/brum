@@ -292,7 +292,6 @@
             padding: 2.5rem 2rem;
             display: flex;
             flex-direction: column;
-            /* Justify-content agora é space-between para controlar topo e fundo, o centro é controlado pelo wrapper */
             justify-content: space-between; 
             align-items: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -333,12 +332,12 @@
             font-weight: 600; 
         }
 
-        /* NOVO WRAPPER DE CENTRALIZAÇÃO */
+        /* WRAPPER DE CENTRALIZAÇÃO */
         .flip-content-wrapper {
-            flex: 1; /* Ocupa todo o espaço vertical disponível entre o titulo e o botão */
+            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centraliza verticalmente o conteúdo */
+            justify-content: center;
             align-items: center;
             width: 100%;
         }
@@ -437,7 +436,6 @@
                 print-color-adjust: exact;
             }
             
-            /* Ajuste para o wrapper centralizado no print */
             .flip-container.flipped .flip-content-wrapper {
                 justify-content: center !important;
                 margin: 20px 0 !important;
@@ -643,7 +641,7 @@
 
                     <!-- VERSO (PREMIUM) -->
                     <div class="flip-back">
-                        <h3>Desconto Aplicado:</h3>
+                        <h3>Desconto Concedido:</h3>
                         
                         <div class="flip-content-wrapper">
                             <div class="original-price">De: R$ 3.000,00</div>
@@ -736,7 +734,7 @@
             },
             'benchmarking': {
                 title: 'Benchmarking Competitivo',
-                desc: 'Comparativo do seu hotel (Brum) versus Cesta Competitiva (CompSet) em RGI (Revenue Generation Index).',
+                desc: 'Comparativo do Amsterdam versus Cesta Competitiva (CompSet) em RGI (Revenue Generation Index).',
                 type: 'bar',
                 data: {
                     labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
